@@ -19,6 +19,18 @@ const CarSchema = new Schema({
     type: String,
     required: true,
   },
+  localization: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  km: {
+    type: String,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

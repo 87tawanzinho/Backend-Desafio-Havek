@@ -3,4 +3,7 @@ export interface ModelCar {
   brand: String;
   model: String;
   photo: String;
+  price: String;
+  localization: String;
+  km: String;
 }
