@@ -1,6 +1,6 @@
 // Modelo do banco de dados (Cars.ts)
 import mongoose, { Schema, Document } from "mongoose";
-import { ModelCar } from "../interfaces/CarInterface";
+import { ModelCar } from "../interfaces/interfaces";
 
 const CarSchema = new Schema({
   name: {

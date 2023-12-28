@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ModelCar } from "../interfaces/CarInterface";
+import { ModelCar } from "../interfaces/interfaces";
 import Car from "../models/Cars";
 export default async function createCar(
   req: Request,

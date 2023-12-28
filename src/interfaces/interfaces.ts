@@ -7,3 +7,9 @@ export interface ModelCar {
   localization: String;
   km: String;
 }
+
+export interface ModelUser {
+  name: String;
+  email: String;
+  password: String;
+}
