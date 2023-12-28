@@ -2,14 +2,11 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.CONNECT_URL, {}, (error) => {
-  if (error) {
-    console.log("Error in autentication" + error);
-    return;
+export default async function mongooseConnection() {
+  try {
+    await mongoose.connect(process.env.CONNECT_URL);
+    return console.log("connected");
+  } catch (err) {
+    return console.log("Error, please check" + err);
   }
-  console.log("Connected in MONGODB. 😎");
-}); // se conectando ao MongoDB
-
-mongoose.Promise = global.Promise;
-
-module.exports = mongoose;
+}

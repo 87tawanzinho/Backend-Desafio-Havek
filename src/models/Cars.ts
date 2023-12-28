@@ -1,9 +1,8 @@
-// Modelo do banco de dados
+// Modelo do banco de dados (Cars.ts)
+import mongoose, { Schema, Document } from "mongoose";
+import { ModelCar } from "../interfaces/CarInterface";
 
-const db = require("../connectDB/mongooseConnection"); // se conecta ao nosso banco
-
-const CarSchema = new mongoose.Schema({
-  // sempre que um novo carro é criado, ele seguirá esses padrões
+const CarSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -22,10 +21,10 @@ const CarSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
 });
 
-const Car = db.model("Cars", CarSchema);
+const Car = mongoose.model<ModelCar>("Cars", CarSchema);
 
-module.exports = Car;
+export default Car;
