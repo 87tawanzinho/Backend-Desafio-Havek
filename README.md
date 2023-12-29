@@ -1,5 +1,7 @@
 Esse é o backend da aplicação
 
+Clone o repositorio e use npm i, mas certifique-se de usar suas credenciais 
+
 Para o backend eu utilizei NODEJS + EXPRESSJS + TYPESCRIPT e MONGODB/MONGOOSE
 
 Foi utilizado o padrão MVC para melhor organização de codigo 
