@@ -5,8 +5,12 @@ export default async function createCar(
   req: Request,
   res: Response
 ): Promise<Response<ModelCar>> {
-  const { name, brand, model, photo, price, localization, km } = req.body;
+  const { name, brand, model, price, localization, km } = req.body;
+  if (!req.file || !req.file.filename) {
+    return res.status(400).json({ message: "Please, upload a valid file." });
+  }
 
+  const { filename: photo } = req.file;
   if (!name || !brand || !model || !photo || !price || !localization || !km) {
     return res.status(400).json({ mensagem: "Please, check all fields." });
   }

@@ -1,5 +1,6 @@
 import mongooseConnection from "./connectDB/mongooseConnection";
 import router from "./routes";
+
 var cors = require("cors");
 require("dotenv").config();
 mongooseConnection();
