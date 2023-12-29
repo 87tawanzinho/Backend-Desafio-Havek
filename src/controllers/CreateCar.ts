@@ -43,9 +43,9 @@ export default async function createCar(
       owner: userId,
       photo: uploadRes ? uploadRes.secure_url : null,
     });
-
-    user.cars.push(newCar._id);
     await newCar.save();
+    user.cars.push(newCar._id);
+    await user.save();
     return res.json(newCar);
   } catch (err) {
     console.error("Error creating car:", err);
