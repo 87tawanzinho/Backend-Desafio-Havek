@@ -6,6 +6,7 @@ import getCarByUser from "./controllers/cars/GetUserCars";
 import registerUser from "./controllers/user/RegisterUser";
 import loginUser from "./controllers/user/UserLogin";
 import multer from "multer";
+import { verifyToken } from "./controllers/verifyToken";
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 10 * 1024 * 1024 },
@@ -18,8 +19,8 @@ router.post("/createUser", registerUser);
 router.post("/loginUser", loginUser);
 router.get("/userCars/:id", getCarByUser);
 // cars
-router.post("/createCar", upload.single("photo"), createCar);
+router.post("/createCar", verifyToken, upload.single("photo"), createCar);
 router.get("/", getCar);
-router.delete("/user/:userId/car/:carId", deleteCar);
-router.put("/editCar/:carId/:userId", editCar);
+router.delete("/user/:userId/car/:carId", verifyToken, deleteCar);
+router.put("/editCar/:carId/:userId", verifyToken, editCar);
 export default router;
