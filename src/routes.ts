@@ -14,7 +14,7 @@ const router = express.Router();
 //user
 router.post("/createUser", registerUser);
 router.post("/loginUser", loginUser);
-router.get("/userCars", getCarByUser);
+router.get("/userCars/:id", getCarByUser);
 // cars
 router.post("/createCar", upload.single("photo"), createCar);
 router.get("/", getCar);

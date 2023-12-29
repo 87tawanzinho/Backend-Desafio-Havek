@@ -43,6 +43,7 @@ export default async function createCar(
       owner: userId,
       photo: uploadRes ? uploadRes.secure_url : null,
     });
+
     await newCar.save();
     user.cars.push(newCar._id);
     await user.save();
