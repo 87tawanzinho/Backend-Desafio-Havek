@@ -19,6 +19,6 @@ router.get("/userCars/:id", getCarByUser);
 // cars
 router.post("/createCar", upload.single("photo"), createCar);
 router.get("/", getCar);
-router.delete("/deleteCar/:id", deleteCar);
+router.delete("/user/:userId/car/:carId", deleteCar);
 
 export default router;
