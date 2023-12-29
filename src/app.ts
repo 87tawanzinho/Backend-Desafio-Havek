@@ -8,7 +8,7 @@ mongooseConnection();
 
 const express = require("express");
 const app = express();
-app.use("/public", express.static(path.join(__dirname, "public")));
+app.use("/public", express.static(path.join(__dirname, "/public")));
 
 app.use(cors());
 app.use(express.json());
