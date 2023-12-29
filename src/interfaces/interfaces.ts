@@ -1,3 +1,5 @@
+import { Types } from "mongoose";
+
 export interface ModelCar {
   name: String;
   brand: String;
@@ -12,4 +14,5 @@ export interface ModelUser {
   name: String;
   email: String;
   password: String;
+  cars: Types.ObjectId[];
 }

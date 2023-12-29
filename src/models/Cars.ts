@@ -28,12 +28,16 @@ const CarSchema = new Schema({
     required: true,
   },
   km: {
-    type: String,
+    type: Number,
     required: true,
   },
   createdAt: {
     type: Date,
     default: Date.now,
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
   },
 });
 

@@ -27,6 +27,7 @@ export default async function loginUser(req: Request, res: Response) {
       {
         id: user._id,
         name: user.name,
+        cars: user.cars,
       },
       secret
     );
