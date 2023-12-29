@@ -8,15 +8,13 @@ export default async function editCar(
 ): Promise<Response> {
   const { name, brand, model, price, localization, km, photo } = req.body;
 
-  const { carId, userId } = req.params;
+  const { carId } = req.params;
 
   try {
-    let car = await Car.findOne({ _id: carId, owner: userId });
+    let car = await Car.findById(carId);
 
     if (!car) {
-      return res
-        .status(404)
-        .json({ error: "Car not found or does not belong to the user" });
+      return res.status(404).json({ error: "Car not found" });
     }
 
     let uploadRes;
