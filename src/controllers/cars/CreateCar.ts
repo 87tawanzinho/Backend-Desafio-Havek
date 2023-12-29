@@ -1,24 +1,21 @@
 import { Request, Response } from "express";
 import Car from "../../models/Cars";
-const cloudinary = require("../../upload/cloudinary");
+import User from "../../models/User";
+const cloudinary = require("../upload/cloudinary");
 
-export default async function editCar(
+export default async function createCar(
   req: Request,
   res: Response
 ): Promise<Response> {
-  const { name, brand, model, price, localization, km, photo } = req.body;
+  const { userId, name, brand, model, price, localization, km, photo } =
+    req.body;
 
-  const { carId, userId } = req.params;
+  const user = await User.findById(userId);
+  if (!user) {
+    return res.status(404).json({ error: "User Not Found" });
+  }
 
   try {
-    let car = await Car.findOne({ _id: carId, owner: userId });
-
-    if (!car) {
-      return res
-        .status(404)
-        .json({ error: "Car not found or does not belong to the user" });
-    }
-
     let uploadRes;
 
     if (photo) {
@@ -36,21 +33,23 @@ export default async function editCar(
       });
     }
 
-    // Update car properties if provided in the request
-    car.name = name !== undefined ? name : car.name;
-    car.brand = brand !== undefined ? brand : car.brand;
-    car.model = model !== undefined ? model : car.model;
-    car.price = price !== undefined ? price : car.price;
-    car.localization =
-      localization !== undefined ? localization : car.localization;
-    car.km = km !== undefined ? km : car.km;
-    car.photo = uploadRes ? uploadRes.secure_url : car.photo;
+    const newCar = new Car({
+      name,
+      brand,
+      model,
+      price,
+      localization,
+      km,
+      owner: userId,
+      photo: uploadRes ? uploadRes.secure_url : null,
+    });
 
-    await car.save();
-
-    return res.json(car);
+    await newCar.save();
+    user.cars.push(newCar._id);
+    await user.save();
+    return res.json(newCar);
   } catch (err) {
-    console.error("Error updating car:", err);
-    return res.status(500).json({ message: "Error updating car", error: err });
+    console.error("Error creating car:", err);
+    return res.status(500).json({ message: "Error creating car", error: err });
   }
 }

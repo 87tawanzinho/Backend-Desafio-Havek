@@ -18,7 +18,7 @@ router.post("/createUser", registerUser);
 router.post("/loginUser", loginUser);
 router.get("/userCars/:id", getCarByUser);
 // cars
-router.post("/createCar", upload.single("photo"), createCar);
+router.post("/createCar/:carId/:userId", upload.single("photo"), createCar);
 router.get("/", getCar);
 router.delete("/user/:userId/car/:carId", deleteCar);
 router.put("/editCar/:carId/:userId", editCar);
