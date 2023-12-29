@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import User from "../models/User";
+import User from "../../models/User";
 import mongoose from "mongoose";
 
 export default async function getCarByUser(req: Request, res: Response) {

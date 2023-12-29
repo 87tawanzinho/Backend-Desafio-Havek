@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import Car from "../models/Cars";
-import User from "../models/User";
-const cloudinary = require("../upload/cloudinary");
+import Car from "../../models/Cars";
+import User from "../../models/User";
+const cloudinary = require("../../upload/cloudinary");
 
 export default async function createCar(
   req: Request,
