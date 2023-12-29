@@ -1,3 +1,4 @@
+import path from "path";
 import mongooseConnection from "./connectDB/mongooseConnection";
 import router from "./routes";
 
@@ -7,6 +8,8 @@ mongooseConnection();
 
 const express = require("express");
 const app = express();
+app.use("/public", express.static(path.join(__dirname, "public")));
+
 app.use(cors());
 app.use(express.json());
 app.use(router);
