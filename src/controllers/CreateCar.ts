@@ -1,37 +1,29 @@
 import { Request, Response } from "express";
-import { ModelCar } from "../interfaces/interfaces";
-const cloudinary = require("../upload/cloudinary");
 import Car from "../models/Cars";
+const cloudinary = require("../upload/cloudinary");
+
 export default async function createCar(
   req: Request,
   res: Response
-): Promise<Response<ModelCar>> {
-  const { name, brand, model, price, localization, km } = req.body;
+): Promise<Response> {
+  const { name, brand, model, price, localization, km, photo } = req.body;
 
   try {
     let uploadRes;
 
-    if (req.file) {
-      // Wrap the upload process in a Promise to wait for it to complete
+    if (photo) {
       uploadRes = await new Promise((resolve, reject) => {
         cloudinary.uploader
-          .upload_stream(
-            { resource_type: "image" }, // Adjust resource type as needed
-            (error, response) => {
-              if (error) {
-                console.error("Error uploading to Cloudinary:", error);
-                reject(error);
-              } else {
-                resolve(response);
-              }
+          .upload_stream({ resource_type: "image" }, (error, response) => {
+            if (error) {
+              console.error("Error uploading to Cloudinary:", error);
+              reject(error);
+            } else {
+              resolve(response);
             }
-          )
-          .end(req.file?.buffer);
+          })
+          .end(Buffer.from(photo, "base64"));
       });
-    }
-
-    if (!name || !brand || !model || !price || !localization || !km) {
-      return res.status(400).json({ mensagem: "Please, check all fields." });
     }
 
     const newCar = new Car({
@@ -47,6 +39,7 @@ export default async function createCar(
     await newCar.save();
     return res.json(newCar);
   } catch (err) {
-    return res.status(500).json({ message: "Error", error: err });
+    console.error("Error creating car:", err);
+    return res.status(500).json({ message: "Error creating car", error: err });
   }
 }
