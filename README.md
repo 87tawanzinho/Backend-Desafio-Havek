@@ -23,7 +23,7 @@ Caso a gente receba um token, então será feita a autorização, caso não for,
 
 Rotas:
 
-router.post("/createUser", registerUser); // cria um usuario 
+router.post("/createUser", registerUser); // cria um usuario <br>
 router.post("/loginUser", loginUser); // faz login 
 router.get("/userCars/:id", getCarByUser); // pega os carros que o usuario criou pelo id
 router.post("/createCar", verifyToken, upload.single("photo"), createCar); // cria o carro (precisa de token)
