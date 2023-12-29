@@ -24,11 +24,11 @@ Caso a gente receba um token, então será feita a autorização, caso não for,
 Rotas:
 
 router.post("/createUser", registerUser); // cria um usuario <br>
-router.post("/loginUser", loginUser); // faz login 
-router.get("/userCars/:id", getCarByUser); // pega os carros que o usuario criou pelo id
-router.post("/createCar", verifyToken, upload.single("photo"), createCar); // cria o carro (precisa de token)
-router.get("/", getCar); // pega todos os carros
-router.delete("/user/:userId/car/:carId", verifyToken, deleteCar); // deleta um carro (precisa de token)
-router.put("/editCar/:carId/:userId", verifyToken, editCar);  // edita o carro do usuario (precisa de token)
+router.post("/loginUser", loginUser); // faz login <br>
+router.get("/userCars/:id", getCarByUser); // pega os carros que o usuario criou pelo id <br>
+router.post("/createCar", verifyToken, upload.single("photo"), createCar); // cria o carro (precisa de token) <br>
+router.get("/", getCar); // pega todos os carros <br>
+router.delete("/user/:userId/car/:carId", verifyToken, deleteCar); // deleta um carro (precisa de token) <br>
+router.put("/editCar/:carId/:userId", verifyToken, editCar);  // edita o carro do usuario (precisa de token) <br>
 
 https://backend-desafio-havek.vercel.app/
