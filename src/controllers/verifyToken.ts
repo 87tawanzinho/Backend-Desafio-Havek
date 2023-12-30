@@ -9,7 +9,7 @@ export const verifyToken = (req, res, next) => {
   }
 
   try {
-    jwt.verify(token, process.env.secret);
+    jwt.verify(token, process.env.SECRET);
     next();
   } catch (error) {
     res.status(500).json({ message: error });
