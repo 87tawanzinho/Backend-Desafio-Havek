@@ -14,4 +14,4 @@ app.use(cors());
 app.use(express.json({ limit: "10mb" }));
 app.use(router);
 
-app.listen(4000, () => console.log("Sucess"));
+app.listen(4000, () => console.log("Success"));

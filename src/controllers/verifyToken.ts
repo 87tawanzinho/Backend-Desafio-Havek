@@ -1,4 +1,4 @@
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").Con;
 import jwt from "jsonwebtoken";
 export const verifyToken = (req, res, next) => {
   const tokenHeader = req.headers["authorization"];
